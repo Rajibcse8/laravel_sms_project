@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Stock;
 use Illuminate\Http\Request;
+use DB;
 
 class StockController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+    
     public function index()
     {
-        //
+        
+        $user = DB::table('stocks')->where('id', 1)->first();
+        $id= $user->smsquantity;
+       return view ('currentstock',compact('id'));
     }
 
     /**

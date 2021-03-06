@@ -48,7 +48,19 @@ class PurchaseController extends Controller
            'creater_purchase_id'=>auth()->id()]);
            $purchase->save();
 
-           return redirect('/dashboard');
+
+           $user = DB::table('stocks')->where('id', 1)->first();
+           $amount= $user->smsquantity;
+           $amount+=$request->quantity;
+
+           DB::table('stocks')
+            ->where('id', 1)
+            ->update(['smsquantity' =>$amount ]);
+
+
+
+           return redirect('/dashboard')->with('success','Purchase successfully created');;
+           
             			
            
     }
@@ -89,8 +101,30 @@ class PurchaseController extends Controller
         //
     }
 
+    public function reportcreate(){
+        return view('purchase.purchasereport');
+    }
+
+    public function reportstore(Request $request){
+
+        $datas = Purchase::whereBetween('created_at', [$request->startdate, $request->enddate])->get();
+      
+        return view('purchase.showreport',compact('datas'));
+      
+    }
+
+
 
     public function test(){
+
+       
+        $datas = Purchase::with('user')->orderBy('id')->get();
+
+       //if($datas)dd('okk');
+       //else dd('not okk');
+       echo $datas;
+    }
+    public function test2(){
 
        
         $datas = Purchase::with('user')->orderBy('id')->get();

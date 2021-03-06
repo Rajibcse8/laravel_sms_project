@@ -7,26 +7,32 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Customer name</th>
-        <th scope="col">Customer address</th>
-        <th scope="col">Customer status </th>
-        <th scope="col">Customer created By</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Status</th>
+        <th scope="col">Created_BY</th>
 
       </tr>
     </thead>
 
     <tbody>
- 
-       @foreach($customers as $key=> $inf)
+       @if(count($datas))
+        @foreach($datas as $key=>$inf)
         <tr>
             <th scope="row">#</th>
             <td>{{ $inf->customer_name }}</td>
             <td>{{ $inf->customer_address }}</td>
             <td>{{ $inf->status }}</td>
-            <td>{{ $inf->user->name }}</td>
-        </tr>
+            <td>{{ $inf->user->name  }}</td>   
+            
+
+          </tr>
             
         @endforeach
+
+        @else
+        <p>No data found</p>
+        @endif
         
     </tbody>
   </table>

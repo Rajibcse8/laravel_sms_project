@@ -20,7 +20,6 @@ class CreatePurchasesTable extends Migration
             $table->integer('purchase_amount');
             $table->integer('purchase_quantity');
             $table->string('purchase_type');
-            $table->date('doc');
             $table->unsignedBigInteger('creater_purchase_id');
             $table->foreign('creater_purchase_id')->references('id')->on('users')->onDelete('cascade');
 

@@ -144,7 +144,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ url('stock') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p >
                  Current-Stock
@@ -175,6 +175,13 @@
                     <p>Purchase Record</p>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('purchasereport') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Purchase Report</p>
+                  </a>
+                </li>
               
   
               </ul>
@@ -201,6 +208,12 @@
                     <p>See Cusromer Info</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href=" {{ url('customerreport') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>See Cusromer Report</p>
+                  </a>
+                </li>
               
   
               </ul>
@@ -217,15 +230,22 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="pages/tables/simple.html" class="nav-link">
+                  <a href="{{ url('sell/create') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Make SELL</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/tables/data.html" class="nav-link">
+                  <a href="{{url ('sell') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>SELL RECORD</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{{ url('sellreport') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>SELL REport</p>
                   </a>
                 </li>
               
@@ -251,7 +271,25 @@
   
   
     <section class="content">
-      @yield('content')
+
+
+
+      <main class="py-4">
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+         @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+        @yield('content')
+
+      </main>
+
+    
         
     </section>
     <!-- /.content -->
